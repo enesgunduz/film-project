@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Project</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Project</h1>
+        <div class="form">
+            <form>
+                <label for="movietitle">Movie name</label>
+                <input type="text" id="movietitle" placeholder="Stranger Things">
+
+                <label for="movieurl">Movie url</label>
+                <input type="text" id="movieurl" placeholder="https://tr.wikipedia.org/Stranger_Things_logo.png">
+
+                <label for="moviedirector">Director</label>
+                <input type="text" id="moviedirector" placeholder="Shawn lavy">
+                <button type="submit" id = "addMovie">Add movie</button>
+            </form>
+        </div>
+        
+        <div class="movie-list"></div>
+        <a href="#" id ="deleteAllMovie">Delete all movies</a>
+    </div>
+
+    <script src="ui.js"></script>
+    <script src="storage.js"></script>
+    <script src= "movie.js"></script>
+
+    <script src="project.js"></script>
+</body>
+</html>
