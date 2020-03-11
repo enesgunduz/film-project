@@ -7,16 +7,12 @@ const movieList = document.querySelector('.movie-list');
 const deleteAllMovieButton = document.getElementById('deleteAllMovie');
 eventListener();
 
-const ui = new UI();
-const storage = new Storage();
-
-
 function eventListener(){
     form.addEventListener('submit',addMovie);
     document.addEventListener('DOMContentLoaded',function(){
-        let movies = storage.getMovieFromStorage();
+        let movies = Storage.getMovieFromStorage();
 
-        ui.loadAllMovies(movies);
+        UI.loadAllMovies(movies);
     });
     movieList.addEventListener('click',deleteMovie);
     deleteAllMovieButton.addEventListener('click',deleteAllMovie)
@@ -28,27 +24,27 @@ function addMovie(e){
     const director = movieDirector.value;
     
     if(movieTitle.value === '' || movieUrl.value === '' || movieDirector.value === ''){
-        ui.displayMessages('danger','Please fill all the blanks..')
+        UI.displayMessages('danger','Please fill all the blanks..')
     }else{
         const newMovie = new Movie(title,url,director);
-        ui.displayMessages('success','Movie added by list..')
-        ui.addMovieUI(newMovie);
-        storage.addMovieStorage(newMovie);
+        UI.displayMessages('success','Movie added by list..')
+        UI.addMovieUI(newMovie);
+        Storage.addMovieStorage(newMovie);
     }
 
-    ui.clearInputs(movieTitle,movieUrl,movieDirector);
+    UI.clearInputs(movieTitle,movieUrl,movieDirector);
     e.preventDefault();
 }
 
 function deleteMovie(e){
     if(e.target.className === 'delete-item'){
-       ui.deleteMovieUI(e.target);
-       storage.deleteMovieStorage(e.target.previousElementSibling.previousElementSibling.textContent)
-        ui.displayMessages('success','Movie successfully deleted');
+       UI.deleteMovieUI(e.target);
+       Storage.deleteMovieStorage(e.target.previousElementSibling.previousElementSibling.textContent)
+        UI.displayMessages('success','Movie successfully deleted');
     }
 }
 function deleteAllMovie(e){
-    ui.deleteAllMovieUI();
-    storage.deleteAllMovieStorage();
-    ui.displayMessages('success','All movies have been deleted successfully');
+    UI.deleteAllMovieUI();
+    Storage.deleteAllMovieStorage();
+    UI.displayMessages('success','All movies have been deleted successfully');
 }

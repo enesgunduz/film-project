@@ -1,39 +1,38 @@
-function Storage(){
-
-}
-
-Storage.prototype.addMovieStorage = function(newMovie){
-    let movie = this.getMovieFromStorage();
-
-    movie.push(newMovie);
-    localStorage.setItem('movie',JSON.stringify(movie))
-}
-
-Storage.prototype.getMovieFromStorage = function(){
-    let movie;
+class Storage{
+    static addMovieStorage(newMovie){
+        let movie = this.getMovieFromStorage();
     
-    if(localStorage.getItem('movie') === null){
-        movie = [];
-    }else{
-        movie = JSON.parse(localStorage.getItem('movie'))
+        movie.push(newMovie);
+        localStorage.setItem('movie',JSON.stringify(movie))
     }
-    return movie;
-}
-
-Storage.prototype.deleteMovieStorage = function(movieTitle){
-    let movie = this.getMovieFromStorage();
-
-    movie.forEach(function(mov,index){
-
-        if(mov.title === movieTitle){
-            movie.splice(index,1);
+    
+    static getMovieFromStorage(){
+        let movie;
+        
+        if(localStorage.getItem('movie') === null){
+            movie = [];
+        }else{
+            movie = JSON.parse(localStorage.getItem('movie'))
         }
-
-        localStorage.setItem("movie",JSON.stringify(movie));
-    })
+        return movie;
+    }
+    
+    static deleteMovieStorage(movieTitle){
+        let movie = this.getMovieFromStorage();
+    
+        movie.forEach(function(mov,index){
+    
+            if(mov.title === movieTitle){
+                movie.splice(index,1);
+            }
+    
+            localStorage.setItem("movie",JSON.stringify(movie));
+        })
+    }
+    
+    static deleteAllMovieStorage(){
+        localStorage.removeItem("movie");
+    
+    }
 }
 
-Storage.prototype.deleteAllMovieStorage = function(){
-    localStorage.removeItem("movie");
-
-}
